@@ -1,0 +1,13 @@
+.images{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.image{
+  width: 400px;
+  height: auto;
+}
+.caja {
+  user-select: none;
+}
