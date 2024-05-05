@@ -1,10 +1,12 @@
 import React from 'react';
 import videoSource from '../../assets/camila-espiral.mp4';
 import './Home.css'; 
+import Navbar from './Navbar';
 
 const Home = () => {
   return (
     <>
+        <Navbar />
       <div className="video-container">
         <video autoPlay loop muted className="background-video">
           <source src={videoSource} type="video/mp4" />

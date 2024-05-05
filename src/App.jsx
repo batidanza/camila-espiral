@@ -1,16 +1,25 @@
 import React from 'react';
-
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 import './App.css';
-import Navbar from './components/layout/Navbar';
 import Home from './components/layout/Home';
+import Contact from './components/contact/Contact.jsx'
 
 function App() {
   return (
-    <>
-      <Navbar />
-      <Home />
-    </>
+
+
+<Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </Router>
+
   );
 }
 
