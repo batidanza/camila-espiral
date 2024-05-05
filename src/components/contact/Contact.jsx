@@ -9,6 +9,7 @@ const Contact = () => {
         <p> based in Buenos Aires and New York </p>
         <p> cxamilaestrada@gmail.com </p>
     </div>
+    
   )
 }
 
