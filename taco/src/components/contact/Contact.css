@@ -1,0 +1,37 @@
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    font-family: 'Helvetica Neue', sans-serif;                                           
+    position: fixed;
+    top: 50%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Centra el contenedor en el medio */
+    z-index: 1; /* Ajusta el valor de z-index según sea necesario */
+}
+
+.contact-link {
+    color: black;
+    cursor: pointer;
+    margin-top: 2em;
+    font-size: 0.9em;
+}
+
+.contact-link:hover {
+    text-decoration: underline;
+}
+
+.contact-name {
+    text-decoration: underline;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.1em;
+    margin-bottom: 2em; /* Ajusta el margen entre el nombre y los contact-info */
+}
+
+.contact-info {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 0.9em;
+    margin: 1px;
+}

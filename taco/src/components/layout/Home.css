@@ -1,0 +1,22 @@
+.home-container{
+    z-index: -1;
+}
+  
+
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.background-video {
+    width: 100%; 
+    height: 100%;
+    object-fit: cover; /* El video cubrirá todo el contenedor sin distorsionarse */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
