@@ -8,6 +8,7 @@ import {
 import './App.css';
 import Home from './components/layout/Home';
 import Contact from './components/contact/Contact.jsx'
+import Work from './components/work/Work.jsx';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/work" element={<Work />} />
       </Routes>
     </Router>
 

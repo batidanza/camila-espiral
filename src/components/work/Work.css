@@ -1,0 +1,45 @@
+.collection-container {
+    width: 300px; /* Define un ancho fijo */
+    height: 400px; /* Define una altura fija */
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    box-sizing: border-box; /* Asegura que el padding y el border se incluyan en el tamaño total */
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .collection-container h2 {
+    margin: 10px 0;
+    text-align: center;
+  }
+  
+  .collection-container p {
+    margin: 10px 0;
+    text-align: center;
+  }
+  
+  .collection-container img {
+    width: 100%;
+    height: auto;
+    max-height: 200px; /* Ajusta la altura máxima para las imágenes */
+    object-fit: cover; /* Cubre el contenedor sin deformar la imagen */
+    transition: opacity 0.3s ease;
+  }
+  
+  .collection-container:hover img {
+    opacity: 0.7;
+  }
+  
+  .collections-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
