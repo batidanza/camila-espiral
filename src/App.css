@@ -6,3 +6,23 @@ body {
 .App {
     cursor: url(./assets/pop-1.png), auto;
 }
+
+.logo{
+    display: flex;
+    justify-content: center;
+    z-index: 1500;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow';
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    font-style: italic; /* Cambia el estilo a cursiva */
+}
+
+.link-rrd {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    cursor: url(./assets/rosa3.png), auto; 
+}
+

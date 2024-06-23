@@ -21,13 +21,13 @@ export const getPhotoByCollection = async (collectionId) => {
   }
 };
 
-export const fetchCollectionById = async (userId) => {
+export const fetchCollectionById = async (id) => {
   try {
-    const response = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/collection/collection/${collectionId}`);
+    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_ENDPOINT}/collection/collection/${id}`);
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error al obtener collcection por ID:", error);
-    return { success: false, error: "Error al obtener collection por ID" };
+    console.error(`Error fetching collection with ID ${id}:`, error);
+    return null;
   }
 };

@@ -3,14 +3,15 @@ import Sketch from "react-p5";
 import { fetchCollection } from "../../services/collectionAPI";
 import { useNavigate } from "react-router-dom";
 import img6 from "../../assets/Copia de IMG_3027.jpg"; // Importar la imagen de fondo
-import customCursor from "../../assets/cursor 2.png"
+import customCursor from "../../assets/cursor 2.png";
+
 class MovableImage {
-  constructor(img, p5, x, y, name, onClick) {
+  constructor(img, p5, x, y, id, onClick) {
     this.img = img;
     this.p5 = p5;
     this.x = x;
     this.y = y;
-    this.name = name;
+    this.id = id; // Add id
     this.angle = 0;
     this.radius = 50;
     this.vx = p5.random(-2, 2); // Velocidad en el eje X
@@ -29,7 +30,7 @@ class MovableImage {
 
     // Detectar clic en la imagen
     if (p5.mouseIsPressed && this.isMouseOver()) {
-      this.onClick();
+      this.onClick(this.id); // Pass id to callback
     }
   }
 
@@ -72,6 +73,8 @@ const MovableImageCanvas = () => {
     canvas.style("user-select", "none");
     canvas.style("touch-action", "none");
     canvas.style("position", "absolute");
+    canvas.style("z-index", "-1");
+    
     canvas.style("left", "0");
     canvas.style("top", "0");
 
@@ -89,9 +92,9 @@ const MovableImageCanvas = () => {
           p5,
           p5.random(p5.width - img.width),
           p5.random(p5.height - img.height),
-          null,
-          () => {
-            navigate("/");
+          collection[index].ID, // Pass the id here
+          (id) => {
+            navigate(`/collection/${id}`);
           }
         );
       });
