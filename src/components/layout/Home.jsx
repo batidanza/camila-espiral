@@ -2,6 +2,7 @@ import React from "react";
 import videoSource from "../../assets/back-video.mp4";
 import "./Home.css";
 import Navbar from "./Navbar";
+import Fan from "../sketch/Fan";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
           Your browser does not support the video tag.
         </video>
       </div>
+      <Fan/>
     </>
   );
 };

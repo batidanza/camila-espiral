@@ -80,25 +80,28 @@ const MovableImageCanvas = () => {
 
     try {
       const collection = await fetchCollection();
-      const images = await loadImages(collection, p5);
 
       p5.loadImage(img6, (img) => {
         setBackgroundImage(img);
       });
 
-      const movableImages = images.map((img, index) => {
+      const shuffledCollection = collection.sort(() => Math.random() - 0.5);
+
+      const images = await loadImages(shuffledCollection, p5);
+      
+      const movableImages = shuffledCollection.map((item, index) => {
         return new MovableImage(
-          img,
+          images[index],
           p5,
-          p5.random(p5.width - img.width),
-          p5.random(p5.height - img.height),
-          collection[index].ID, // Pass the id here
+          p5.random(p5.width - images[index].width),
+          p5.random(p5.height - images[index].height),
+          item.ID,
           (id) => {
             navigate(`/collection/${id}`);
           }
         );
       });
-
+      
       setMovableImages(movableImages);
     } catch (error) {
       console.error("Error fetching images:", error);
@@ -113,7 +116,7 @@ const MovableImageCanvas = () => {
         (imageUrl) =>
           new Promise((resolve) => {
             p5.loadImage(imageUrl, (img) => {
-              img.resize(300, 0);
+              img.resize(260, 0);
               resolve(img);
             });
           })

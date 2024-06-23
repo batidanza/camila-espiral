@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getPhotoByCollection, fetchCollectionById } from '../../services/collectionAPI';
-import './Collection.css'
-
+import './Collection.css';
+import LoadingSketch from '../layout/LoadingSketch';
 const Collection = () => {
   const { id } = useParams();
   const [photos, setPhotos] = useState([]);
   const [collection, setCollection] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -21,15 +20,13 @@ const Collection = () => {
         setCollection(collectionData);
       } catch (error) {
         setError('Error fetching data');
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchPhotosAndCollection();
   }, [id]);
 
-  if (loading) return <p>Loading...</p>;
+  if (!collection || !photos.length) return <LoadingSketch />; // Renderiza el sketch de loading mientras se carga la colección y las fotos
   if (error) return <p>{error}</p>;
 
   return (
@@ -39,7 +36,7 @@ const Collection = () => {
       <br />
       <div className="artworks">
         <div className="columns-container">
-          {photos && Array.from({ length: Math.ceil(photos.length / 2) }).map((_, columnIndex) => (
+          {Array.from({ length: Math.ceil(photos.length / 2) }).map((_, columnIndex) => (
             <div className="column" key={columnIndex}>
               {photos
                 .filter((_, index) => index % 2 === columnIndex)

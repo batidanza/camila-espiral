@@ -8,6 +8,7 @@ import Contact from './components/contact/Contact.jsx'
 import Work from './components/work/Work.jsx';
 import Collection from './components/work/Collection.jsx';
 import Logo from './components/layout/Logo.jsx';
+import Banner from './components/layout/Banner.jsx';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
     <Route path="/work" element={<Work />} />
     <Route path='/collection/:id' element={<Collection />} />
   </Routes>
+  <Banner />
 </div>
   );
 }
