@@ -6,17 +6,16 @@
     flex-direction: column;
     font-family: 'Helvetica Neue', sans-serif;                                           
     position: fixed;
-    top: 50%; /* Centra verticalmente */
-    left: 50%; /* Centra horizontalmente */
-    transform: translate(-50%, -50%); /* Centra el contenedor en el medio */
-    z-index: 1; /* Ajusta el valor de z-index según sea necesario */
+    width: 100vw;
+    height: 100vh;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    z-index: 1; 
 }
-
-
 
 .contact-link {
     color: black;
-    cursor: pointer;
     margin-top: 2em;
     font-size: 0.9em;
 }
@@ -29,7 +28,7 @@
     text-decoration: underline;
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.1em;
-    margin-bottom: 2em; /* Ajusta el margen entre el nombre y los contact-info */
+    margin-bottom: 2em;
 }
 
 .contact-info {
