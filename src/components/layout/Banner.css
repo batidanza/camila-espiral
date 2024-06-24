@@ -1,78 +1,77 @@
 .banner {
-    background-image: url('/path-to-your-banner-image.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 30px; /* Altura reducida para ajustarse a la parte inferior */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #fff;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgb(0, 0, 0); /* Fondo semi-transparente para el contenido */
+  background-image: url('/path-to-your-banner-image.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 30px; /* Altura reducida para ajustarse a la parte inferior */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.811); /* Fondo semi-transparente para el contenido */
+}
 
-  }
-  
-  .banner-content {
-    padding: 20px;
-    width: 90%;
-    border-radius: 10px;
-    animation: moveText 55s linear infinite; /* Animación para el texto */
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    padding: 20px;
-    align-items: center;
-    text-align: center;
-    font-size: 0.7rem;
-    color: rgb(255, 255, 255);
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;                            
-    font-style: italic; /* Cambia el estilo a cursiva */             
-  }
+.banner-content {
+  padding: 20px;
+  width: 100%;
+  border-radius: 10px;
+  animation: moveText 20s linear infinite; /* Ajustar la duración de la animación */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 10px;
+  align-items: center;
+  text-align: center;
+  font-size: 0.7rem;
+  color: rgb(255, 255, 255);
+  font-family: 'Helvetica Neue', sans-serif;       
+  font-weight: bold;
 
-  .anchor {
-    text-decoration: none;
-    color: white;
+  white-space: nowrap; /* Evita el salto de línea */
+  color: transparent; /* Hace el interior del texto transparente */
+  -webkit-text-stroke-width: 1px; /* Ancho del borde del texto */
+  -webkit-text-stroke-color: rgb(255, 255, 255); /* Color del borde del texto */
+}
+
+.anchor {
+  text-decoration: none;
+  color: white;
+}
+
+@keyframes moveText {
+  0% {
+    transform: translateX(-100%);
   }
-  
-  @keyframes moveText {
-    0% {
-      transform: translateX(-100%);
-    }
-    50% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
+  100% {
+    transform: translateX(100%);
   }
-  
-  .banner h2 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  
-  .banner p {
-    font-size: 1rem;
-    margin-bottom: 10px;
-  }
-  
-  .banner-button {
-    background-color: #fff;
-    color: #000000;
-    border: none;
-    padding: 8px 16px;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .banner-button:hover {
-    background-color: #eee;
-  }
-  
+}
+
+.banner h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.banner p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.banner-button {
+  background-color: #fff;
+  color: #000000;
+  border: none;
+  padding: 8px 16px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.banner-button:hover {
+  background-color: #eee;
+}

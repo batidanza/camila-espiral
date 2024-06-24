@@ -39,3 +39,11 @@ body {
     z-index: 9999; /* Asegura que esté por encima de otros elementos */
 }
 
+.logo-image {
+    width: 200px;  /* Ajusta el tamaño según sea necesario */
+    height: auto;
+}
+
+.title{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}

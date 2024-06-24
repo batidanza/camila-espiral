@@ -21,13 +21,15 @@
   }
   
   .title {
-    font-family: 'Array', sans-serif;
+    font-family: 'Helvetica Neue', sans-serif;
     font-size: 30px;
-    font-weight: 1;
-    color: #27343a;
-    font-style: bold;
+    font-weight: bold;
+    color: transparent; /* Hace el interior del texto transparente */
+    -webkit-text-stroke-width: 1px; /* Ancho del borde del texto */
+    -webkit-text-stroke-color: #27343a; /* Color del borde del texto */
     margin-bottom: 20px;
   }
+  
   
   .description {
     font-family: 'Array', sans-serif;

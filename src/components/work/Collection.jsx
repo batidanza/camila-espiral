@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getPhotoByCollection, fetchCollectionById } from '../../services/collectionAPI';
+import { initLightboxJS } from 'lightbox.js-react';
+import { SlideshowLightbox } from 'lightbox.js-react';
+import 'lightbox.js-react/dist/index.css';
 import './Collection.css';
 import LoadingSketch from '../layout/LoadingSketch';
+
 const Collection = () => {
   const { id } = useParams();
   const [photos, setPhotos] = useState([]);
   const [collection, setCollection] = useState(null);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    initLightboxJS("Insert your License Key here", "Insert plan type here");
+  }, []);
 
   useEffect(() => {
     const fetchPhotosAndCollection = async () => {
@@ -36,18 +44,22 @@ const Collection = () => {
       <br />
       <div className="artworks">
         <div className="columns-container">
-          {Array.from({ length: Math.ceil(photos.length / 2) }).map((_, columnIndex) => (
+          {Array.from({ length: 2 }).map((_, columnIndex) => (
             <div className="column" key={columnIndex}>
               {photos
                 .filter((_, index) => index % 2 === columnIndex)
                 .map((photo) => (
-                  <Link to={`/photo/${photo.ID}`} key={photo.ID}>
-                    <div className="artwork-container" key={photo.ID}>
-                      <div className="artwork">
-                        <img className="artwork-image" src={photo.Image} alt={`Photo ${photo.ID}`} />
-                      </div>
+                  <div className="artwork-container" key={photo.ID}>
+                    <div className="artwork">
+                      <SlideshowLightbox>
+                        <img 
+                          src={photo.Image} 
+                          alt={`Photo ${photo.ID}`} 
+                          className="artwork-image"
+                        />
+                      </SlideshowLightbox>
                     </div>
-                  </Link>
+                  </div>
                 ))}
             </div>
           ))}

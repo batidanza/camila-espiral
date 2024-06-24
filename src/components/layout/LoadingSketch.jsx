@@ -28,9 +28,9 @@ export default () => {
 
     p5.translate(p5.width / 2, p5.height / 2);
 
-    for (let i = 0; i < 68; i++) {
+    for (let i = 0; i < 85; i++) {
       p5.push();
-      p5.rotate(p5.sin(p5.frameCount + i) * 1400);
+      p5.rotate(p5.sin(p5.frameCount + i) * 1200);
 
       // Utilizar el color British Green
       const britishGreen = {
@@ -41,7 +41,7 @@ export default () => {
 
       p5.stroke(britishGreen.r, britishGreen.g, britishGreen.b);
 
-      p5.circle(x, y, 200 - i * 3, 200 - i / 3, 200 - i);
+      p5.circle(x, y, 250 - i * 3, 250 - i / 3, 250 - i);
     
       p5.pop();
     }
@@ -49,7 +49,7 @@ export default () => {
 
   const mousePressed = (p5) => {
     const distance = p5.dist(p5.width / 2, p5.height / 2, p5.mouseX, p5.mouseY);
-    if (distance < 200) {
+    if (distance < 250) {
       setDragging(true);
     }
   };
