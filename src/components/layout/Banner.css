@@ -30,7 +30,6 @@
   color: rgb(255, 255, 255);
   font-family: 'Helvetica Neue', sans-serif;       
   font-weight: bold;
-
   white-space: nowrap; /* Evita el salto de línea */
   color: transparent; /* Hace el interior del texto transparente */
   -webkit-text-stroke-width: 1px; /* Ancho del borde del texto */

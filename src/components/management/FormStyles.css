@@ -1,0 +1,157 @@
+.my-container-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2vh auto; 
+    color: rgb(255, 197, 197);
+    font-family: 'Helvetica Neue', sans-serif; 
+    font-style: normal;
+    border: 5.5px solid rgb(42, 218, 136);
+    width: 100%; 
+    max-width: 600px; 
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 5%; 
+    background-color: rgb(92, 154, 255); 
+    opacity: 0.8;
+    height: 80vh;
+    
+  }
+
+  .uploader-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2vh auto; 
+    color: rgb(255, 197, 197);
+    font-family: 'Helvetica Neue', sans-serif; 
+    font-style: normal;
+    border: 5.5px solid rgb(42, 218, 136);
+    width: 100%; 
+    max-width: 600px; 
+    box-sizing: border-box;
+    border-radius: 8px;
+    gap: 27px;
+    padding: 5%; 
+    background-color: rgb(92, 154, 255); 
+    opacity: 0.8;
+    height: 80vh;
+    
+  }
+
+
+  .form-containers {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .my-label-form,
+  .form-title {
+    display: block;
+    margin-bottom: 25px;
+    color: rgb(255, 255, 255);
+    font-family: 'Helvetica Neue', sans-serif; 
+    font-size: 1.5em; 
+    color: rgb(255, 255, 255);
+    font-family: 'Helvetica Neue', sans-serif;       
+    font-weight: bold;
+    white-space: nowrap; /* Evita el salto de línea */
+    color: transparent; /* Hace el interior del texto transparente */
+    -webkit-text-stroke-width: 1px; /* Ancho del borde del texto */
+    -webkit-text-stroke-color: rgb(255, 255, 255); /* Color del borde del texto */
+
+  }
+  
+  .my-input-form,
+  .my-textarea-form {
+    width: 100%; 
+    max-width: 100%; 
+    border: 2.5px solid rgb(42, 218, 136);
+    padding: 5px;
+    outline: none;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color:rgb(0, 0, 0);
+    font-family: 'Helvetica Neue', sans-serif; 
+  }
+  
+  .my-select-form {
+    width: 100%;
+    max-width: 100%;
+    background-color:rgb(0, 0, 0);
+    border: 0.5px solid rgb(7, 24, 70);
+    padding: 5px;
+    border-radius: 8px;
+    outline: none;
+    border-radius: 2px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    color:rgb(0, 0, 0);
+    font-family: 'Helvetica Neue', sans-serif; 
+  }
+  
+  .my-select-container {
+    position: relative;
+  }
+  
+  .my-select-container span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 5px;
+    color:rgb(0, 0, 0);
+    font-family: 'Helvetica Neue', sans-serif; 
+    pointer-events: none;
+    z-index: 1; 
+  }
+  
+  .my-button-form,
+  .my-link-form {
+    width: 100%;
+    margin-top: 2vw;
+    color: rgb(0, 0, 0);
+    font-family: 'Helvetica Neue', sans-serif; 
+    background-color: rgba(255, 123, 0, 0.896); 
+    text-decoration: none;
+    text-align: center;
+    padding: 10px;
+    border: solid 1.5px rgb(42, 218, 136);
+    border-radius: 8px;
+    cursor: pointer;
+    
+    
+  }
+  
+  .category-list-create li {
+    cursor: pointer;
+  }
+  
+  .category-list-create{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .my-label-form,
+    .form-title {
+      font-size: 18px; 
+    }
+  
+    .my-button-form,
+    .my-link-form {
+      font-size: 14px;
+    }
+  
+    .my-container-register {
+      width: 90%; 
+    }
+  }
+  

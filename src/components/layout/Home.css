@@ -3,6 +3,10 @@
     z-index: -1;
 }
   
+.elementLink{
+    width: 200px;
+    height: auto;
+}
 
 .video-container {
     position: fixed;
