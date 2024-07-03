@@ -1,68 +1,100 @@
 import React, { useState, useEffect } from "react";
 import Sketch from "react-p5";
 import { fetchMl } from "../../services/collectionAPI";
-import { useNavigate } from "react-router-dom";
 import backgroundImage from "../../assets/pop-1.png";
 import backgroundAudio from "../../assets/background-audio.wav";
 
 class MovableImage {
-  constructor(img, p5, x, y, onClick) {
+  constructor(img, p5, x, y) {
     this.img = img;
     this.p5 = p5;
     this.x = x;
     this.y = y;
-    this.angle = p5.random(p5.TWO_PI); // Usar p5.TWO_PI en lugar de TWO_PI
+    this.originalX = x;
+    this.originalY = y;
+    this.angle = p5.random(p5.TWO_PI);
     this.rotationSpeed = p5.random(0.001, 0.01);
     this.radius = 50;
     this.vx = p5.random(-2, 2);
     this.vy = p5.random(-2, 2);
-    this.onClick = onClick;
     this.clicked = false;
+    this.size = 1;
+    this.zooming = false;
+    this.zoomSpeed = 0.05;
   }
 
   display() {
-    const { p5, img, x, y, angle, clicked } = this;
+    const { p5, img, x, y, angle, size } = this;
     p5.push();
-    p5.translate(x + img.width / 2, y + img.height / 2);
-    p5.rotate(angle);
-    p5.translate(-img.width / 2, -img.height / 2);
-    p5.image(img, 0, 0);
-    if (clicked) {
-      p5.stroke(255);
-      p5.strokeWeight(3);
+    if (!this.clicked) {
+      p5.translate(x + img.width * size / 2, y + img.height * size / 2);
+      p5.rotate(angle);
+      p5.translate(-img.width * size / 2, -img.height * size / 2);
+    } else {
+      p5.translate(x, y); // Posicionar en (x, y) cuando se hace clic
     }
+    p5.image(img, 0, 0, img.width * size, img.height * size);
     p5.pop();
   }
+  
+
+
 
   isMouseOver() {
-    const { p5, x, y, img } = this;
-    return p5.mouseX >= x && p5.mouseX <= x + img.width && p5.mouseY >= y && p5.mouseY <= y + img.height;
+    const { p5, x, y, img, size } = this;
+    return (
+      p5.mouseX >= x &&
+      p5.mouseX <= x + img.width * size &&
+      p5.mouseY >= y &&
+      p5.mouseY <= y + img.height * size
+    );
   }
 
   move() {
-    this.x += this.vx;
-    this.y += this.vy;
-    this.angle += this.rotationSpeed;
+    if (!this.clicked) {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.angle += this.rotationSpeed;
 
-    if (this.x <= 0 || this.x + this.img.width >= this.p5.width) {
-      this.vx *= -1;
-    }
-    if (this.y <= 0 || this.y + this.img.height >= this.p5.height) {
-      this.vy *= -1;
+      if (this.x < 0 || this.x + this.img.width * this.size > this.p5.width) {
+        this.vx *= -1;
+      }
+      if (this.y < 0 || this.y + this.img.height * this.size > this.p5.height) {
+        this.vy *= -1;
+      }
     }
   }
 
+
   handleClick() {
     if (this.isMouseOver()) {
-      this.clicked = !this.clicked;
-      this.onClick();
+      this.zooming = true;
+      this.clicked = true;
     }
+  }
+
+  update(p5) {
+    if (this.zooming) {
+      this.size += this.zoomSpeed;
+      this.x = p5.width / 2 - (this.img.width * this.size) / 2;
+      this.y = p5.height / 2 - (this.img.height * this.size) / 2;
+
+      if (this.size > 20) { // Ajusta este valor según el nivel de zoom deseado
+        this.size = 1;
+        this.zooming = false;
+        this.clicked = false;
+        this.x = this.originalX;
+        this.y = this.originalY;
+        return true;
+      }
+    }
+    return false;
   }
 }
 
 const MovableImageCanvas = () => {
   const [movableImages, setMovableImages] = useState([]);
-  const navigate = useNavigate();
+  const [zoomedImageIndex, setZoomedImageIndex] = useState(null);
 
   useEffect(() => {
     const audio = new Audio(backgroundAudio);
@@ -98,8 +130,7 @@ const MovableImageCanvas = () => {
           img,
           p5,
           p5.random(p5.width - img.width),
-          p5.random(p5.height - img.height),
-          () => navigate("/")
+          p5.random(p5.height - img.height)
         );
       });
 
@@ -132,14 +163,29 @@ const MovableImageCanvas = () => {
 
   const draw = (p5) => {
     p5.clear();
-    movableImages.forEach((movableImage) => {
-      movableImage.move();
-      movableImage.display();
-    });
+    p5.background(255); // Fondo negro para un efecto más dramático
+    if (zoomedImageIndex !== null) {
+      const zoomedImage = movableImages[zoomedImageIndex];
+      if (zoomedImage.update(p5)) {
+        setZoomedImageIndex(null);
+      } else {
+        zoomedImage.display();
+      }
+    } else {
+      movableImages.forEach((movableImage) => {
+        movableImage.move();
+        movableImage.display();
+      });
+    }
   };
 
   const mousePressed = (p5) => {
-    movableImages.forEach((movableImage) => movableImage.handleClick());
+    movableImages.forEach((movableImage, index) => {
+      movableImage.handleClick();
+      if (movableImage.clicked) {
+        setZoomedImageIndex(index);
+      }
+    });
   };
 
   return (

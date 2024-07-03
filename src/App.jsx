@@ -33,7 +33,6 @@ function App() {
     <Route path='/create-collection' element={<CollectionForm />} />
     <Route path='/collection-create' element={<CreateCollection />} />
   </Routes>
-  <Banner />
 </div>
   );
 }
