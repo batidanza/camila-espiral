@@ -3,7 +3,7 @@ import Sketch from "react-p5";
 import { fetchCollection } from "../../services/collectionAPI";
 import { useNavigate } from "react-router-dom";
 import img6 from "../../assets/Copia de IMG_3027.jpg"; // Import your background image
-import customCursor from "../../assets/cursor 2.png"; // Import your custom cursor image
+import customCursor from "../../assets/cursor2.png"; // Import your custom cursor image
 
 class MovableImage {
   constructor(img, p5, x, y, id, onClick) {
