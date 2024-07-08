@@ -16,6 +16,7 @@ import WorkSketchPixel2 from './components/work/WorkSketchPixel2.jsx';
 import CollectionForm from './components/management/CollectionForm.jsx';
 import PhotoForm from './components/management/PhotoForm.jsx';
 import CreateCollection from './components/management/CreateCollection.jsx';
+import ArchiveForms from './components/management/Archive/ArchiveForms.jsx';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
     <Route path='/upload-photo' element={<PhotoForm />} />
     <Route path='/create-collection' element={<CollectionForm />} />
     <Route path='/collection-create' element={<CreateCollection />} />
+    <Route path='/collection-archive-create' element={<ArchiveForms />} />
   </Routes>
 </div>
   );
