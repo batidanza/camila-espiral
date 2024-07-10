@@ -121,14 +121,20 @@ const Collection = () => {
       <h1 className="title">{collection.Name || "Collection"}</h1>
       <br />
       <div className="artworks">
-        <div className="photos-row">
-          {photos.map((photo, index) => (
-            <DraggablePhoto
-              key={photo.ID}
-              photo={photo}
-              index={index}
-              movePhoto={movePhoto}
-            />
+        <div className="columns-container">
+          {Array.from({ length: 2 }).map((_, columnIndex) => (
+            <div className="column" key={columnIndex}>
+              {photos
+                .filter((_, index) => index % 2 === columnIndex)
+                .map((photo) => (
+                  <DraggablePhoto
+                    key={photo.ID}
+                    photo={photo}
+                    index={photos.indexOf(photo)}
+                    movePhoto={movePhoto}
+                  />
+                ))}
+            </div>
           ))}
         </div>
       </div>
