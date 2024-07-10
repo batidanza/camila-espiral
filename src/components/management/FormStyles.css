@@ -3,20 +3,20 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 20px;
     margin: 2vh auto; 
     color: rgb(255, 197, 197);
     font-family: 'Helvetica Neue', sans-serif; 
     font-style: normal;
-    border: 5.5px solid rgb(42, 218, 136);
+    border: solid 2.5px rgb(255, 255, 255);
     width: 100%; 
     max-width: 600px; 
     box-sizing: border-box;
     border-radius: 8px;
     padding: 5%; 
-    background-color: rgb(92, 154, 255); 
+    background-color: rgb(92, 155, 255); 
     opacity: 0.8;
-    height: 80vh;
-    
+    height: 80vh;    
   }
 
   .uploader-container{
@@ -27,7 +27,7 @@
     color: rgb(255, 197, 197);
     font-family: 'Helvetica Neue', sans-serif; 
     font-style: normal;
-    border: 5.5px solid rgb(42, 218, 136);
+    border: 2.5px solid rgb(255, 255, 255);
     width: 100%; 
     max-width: 600px; 
     box-sizing: border-box;
@@ -54,7 +54,7 @@
     margin-bottom: 25px;
     color: rgb(255, 255, 255);
     font-family: 'Helvetica Neue', sans-serif; 
-    font-size: 1.5em; 
+    font-size: 1.6em; 
     color: rgb(255, 255, 255);
     font-family: 'Helvetica Neue', sans-serif;       
     font-weight: bold;
@@ -69,7 +69,7 @@
   .my-textarea-form {
     width: 100%; 
     max-width: 100%; 
-    border: 2.5px solid rgb(42, 218, 136);
+    border: 2.5px solid rgb(255, 255, 255);
     padding: 5px;
     outline: none;
     margin-bottom: 15px;
@@ -117,17 +117,30 @@
     margin-top: 2vw;
     color: rgb(0, 0, 0);
     font-family: 'Helvetica Neue', sans-serif; 
-    background-color: rgba(255, 123, 0, 0.896); 
+    background-color: rgba(255, 255, 255, 0.896); 
     text-decoration: none;
     text-align: center;
     padding: 10px;
-    border: solid 1.5px rgb(42, 218, 136);
+    border: solid 1.5px rgb(255, 255, 255);
     border-radius: 8px;
     cursor: pointer;
-    
-    
   }
   
+  .management-button{
+    background-color: rgb(120, 168, 247); 
+    text-decoration: none;
+    text-align: center;
+    padding: 10px;
+    border: solid 1.5px rgb(255, 255, 255);
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.7rem;
+    color: rgb(255, 255, 255);
+    font-family: 'Helvetica Neue', sans-serif;       
+    font-weight: bold;
+    min-width: 300px;
+}
+
   .category-list-create li {
     cursor: pointer;
   }
@@ -136,6 +149,19 @@
     display: flex;
     flex-direction: column;
     list-style: none;
+  }
+  
+  .managment-container {
+    background-image: url('../../assets/raja.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   

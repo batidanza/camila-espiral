@@ -1,65 +1,66 @@
 .collection-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .columns-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px; 
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
 
-  
-  
+.columns-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  flex-direction: row;
+}
 
-  .column {
-    margin-bottom: 20px;
-    box-sizing: border-box; 
-  }
-  
-  .title {
-    font-family: 'Helvetica Neue', sans-serif;
-    font-size: 30px;
-    font-weight: bold;
-    color: transparent; /* Hace el interior del texto transparente */
-    -webkit-text-stroke-width: 1px; /* Ancho del borde del texto */
-    -webkit-text-stroke-color: #27343a; /* Color del borde del texto */
-    margin-bottom: 20px;
-  }
-  
-  
-  .description {
-    font-family: 'Array', sans-serif;
-    color: #333333;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3; 
-    -webkit-box-orient: vertical;
-  }
-  
-  .work-title {
-    font-family: 'Array', sans-serif;
-    font-size: 25px;
-    font-weight: bold;
-    color: #38464d;
-  }
-  
-  .artwork-image {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
-    margin-bottom: 10px;
-    transition: opacity 0.2s ease;
-  }
-  
-  
-  .artwork-container {
-    margin-bottom: 30px;
-    padding: 20px;
-    box-sizing: border-box;
-  }
+.photos-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.title {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  color: transparent; /* Hace el interior del texto transparente */
+  -webkit-text-stroke-width: 1px; /* Ancho del borde del texto */
+  -webkit-text-stroke-color: #27343a; /* Color del borde del texto */
+  margin-bottom: 20px;
+}
+
+.description {
+  font-family: "Array", sans-serif;
+  color: #333333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.work-title {
+  font-family: "Array", sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  color: #38464d;
+}
+
+.artwork-image {
+  width: 50%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 10px;
+  transition: opacity 0.2s ease;
+}
+
+.artwork-container {
+  margin-bottom: 30px;
+  padding: 20px;
+  box-sizing: border-box;
+}

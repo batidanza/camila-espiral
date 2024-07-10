@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { uploadPhoto } from "../../services/photoAPI";
+import { uploadPhoto } from "../../../services/photoAPI";
 import {
   fetchCollection,
   createCollection,
-} from "../../services/collectionAPI";
-import "./FormStyles.css";
+} from "../../../services/collectionAPI";
+import "../FormStyles.css";
 
 const CreateCollection = () => {
   // State para el formulario de colección
@@ -200,51 +200,57 @@ const CreateCollection = () => {
       </div>
 
       {/* Formulario de foto */}
-      <div className="uploader-container">
-        <h3 className="form-title">UPLOAD COLLECTION PHOTOS</h3>
-        <div className="my-form-group-form">
-        <label className="my-label-form" htmlFor="Image">
+      <div className="my-container-form">
+        <form
+          onSubmit={handleSubmit}
+          encType="multipart/form-data"
+          className="my-form-form"
+        >
+          <h3 className="form-title">UPLOAD COLLECTION PHOTOS</h3>
+          <div className="my-form-group-form">
+            <label className="my-label-form" htmlFor="Image">
               COLLECTION
             </label>
-          <select
-            value={photoFormData.selectedCollection}
-            className="my-input-form"
-            onChange={handleCollectionChange}
-          >
-            <option value="">Select a collection</option>
-            {photoFormData.collections.map((collection) => (
-              <option key={collection.ID} value={collection.ID}>
-                {collection.Name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="my-form-group-form">
-        <label className="my-label-form" htmlFor="Image">
+            <select
+              value={photoFormData.selectedCollection}
+              className="my-input-form"
+              onChange={handleCollectionChange}
+            >
+              <option value="">Select a collection</option>
+              {photoFormData.collections.map((collection) => (
+                <option key={collection.ID} value={collection.ID}>
+                  {collection.Name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="my-form-group-form">
+            <label className="my-label-form" htmlFor="Image">
               PHOTO IDENTIFIER
             </label>
-          <input
-            className="my-input-form"
-            type="text"
-            value={photoFormData.photoName}
-            name="photoName"
-            onChange={handlePhotoNameChange}
-            placeholder="Photo identifier"
-          />
-        </div>
-        <div className="my-form-group-form">
-        <label className="my-label-form" htmlFor="Image">
+            <input
+              className="my-input-form"
+              type="text"
+              value={photoFormData.photoName}
+              name="photoName"
+              onChange={handlePhotoNameChange}
+              placeholder="Photo identifier"
+            />
+          </div>
+          <div className="my-form-group-form">
+            <label className="my-label-form" htmlFor="Image">
               IMAGE
             </label>
-          <input
-            className="my-input-form"
-            type="file"
-            onChange={handlePhotoFileChange}
-          />
-        </div>
-        <button className="my-button-form" onClick={handlePhotoUpload}>
-          Upload images for collection
-        </button>
+            <input
+              className="my-input-form"
+              type="file"
+              onChange={handlePhotoFileChange}
+            />
+          </div>
+          <button className="my-button-form" onClick={handlePhotoUpload}>
+            Upload images for collection
+          </button>
+        </form>
       </div>
     </div>
   );
