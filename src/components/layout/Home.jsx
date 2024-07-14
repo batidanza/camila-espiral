@@ -6,6 +6,7 @@ import Navbar from "./Navbar";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { swapCollectionIds } from "../../services/collectionAPI";
+import LoadingSketch from "./LoadingSketch";
 import "./Home.css";
 
 const ItemType = "COLLECTION";
@@ -42,6 +43,7 @@ const DraggableCollection = ({ collection, index, moveCollection }) => {
 const Home = () => {
   const { loggedIn, logout } = useAuth();
   const [collections, setCollections] = useState([]);
+  const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
     const getCollections = async () => {
@@ -49,6 +51,7 @@ const Home = () => {
       // Sort collections by Position before setting the state
       const sortedCollections = data.sort((a, b) => a.Position - b.Position);
       setCollections(sortedCollections);
+      setLoading(false); // Set loading to false after data is fetched
     };
     getCollections();
   }, []);
@@ -84,6 +87,10 @@ const Home = () => {
     }
   };
 
+  if (loading) {
+    return <LoadingSketch />;
+  }
+
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="home-container">
@@ -116,6 +123,7 @@ const Home = () => {
 };
 
 export default Home;
+
 
 
 

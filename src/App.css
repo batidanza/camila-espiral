@@ -5,6 +5,7 @@ body {
 
 .App {
   cursor: url(./assets/pop-1.png), auto;
+  background-color: whitesmoke;
 }
 
 .link-rrd {

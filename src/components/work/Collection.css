@@ -25,12 +25,10 @@
 
 .title {
   font-family: IBM-Plex-Sans_Regular, sans-serif;
-  font-size: 30px;
-  font-weight: bold;
-  color: transparent; /* Hace el interior del texto transparente */
-  -webkit-text-stroke-width: 1px; /* Ancho del borde del texto */
-  -webkit-text-stroke-color: #00965e; /* Color del borde del texto */
+  font-size: 20px;
   margin-bottom: 20px;
+  font-weight: 200;
+  color: #00965e; /* Color del borde del texto */ ;
 }
 
 .description {

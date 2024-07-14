@@ -8,7 +8,7 @@ const Logo = () => {
   return (
     <div className="logo">
       <div className="logo-links">
-        <Link to="/home" className="logo-link">
+        <Link to="/work" className="logo-link">
           CAMILA-ESPIRAL
         </Link>
       </div>
