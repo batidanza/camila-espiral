@@ -85,3 +85,26 @@ export const fetchMl = async () => {
   }
 };
 
+export const swapCollectionIds = async (firstPhotoId, secondPhotoId) => {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_ENDPOINT}/collection/collections/swap`, {
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ firstPhotoId, secondPhotoId }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Error al intercambiar posiciones de fotos: ${errorText}`);
+    }
+
+    const data = await response.json();
+    console.log("Photo positions swapped successfully:", data);
+    return { success: true, data };
+  } catch (error) {
+    console.error("Error swapping photo positions:", error);
+    return { success: false, error: error.message };
+  }
+};

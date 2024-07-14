@@ -57,6 +57,7 @@ class MovableImage {
 
 const MovableImageCanvas = () => {
   const [movableImages, setMovableImages] = useState([]);
+  const [isAnimationStopped, setIsAnimationStopped] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -83,7 +84,7 @@ const MovableImageCanvas = () => {
     canvas.style("touch-action", "none");
 
     // Cargar y mostrar la imagen de fondo
-    p5.background(backgroundImage);
+    p5.background(p5.loadImage(backgroundImage));
 
     try {
       const collection = await fetchMl();
@@ -123,15 +124,41 @@ const MovableImageCanvas = () => {
   };
 
   const draw = (p5) => {
-    // No es necesario llamar a p5.background aquí si ya estableciste el fondo en setup
+
+    p5.background(p5.loadImage(backgroundImage)); // Fondo de la imagen
     movableImages.forEach((movableImage) => {
-      movableImage.move();
+      if (!isAnimationStopped) {
+        movableImage.move();
+      }
       movableImage.display();
     });
   };
 
+  const handleSkipAnimation = () => {
+    setIsAnimationStopped(true);
+  };
+
   return (
     <div>
+      <button
+        onClick={handleSkipAnimation}
+        style={{
+          position: "absolute",
+          top: "100px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 1000,
+          padding: "10px 20px",
+          fontSize: "40px",
+          backgroundColor: "transparent",
+          color: "#ffffff",
+          border: "none",
+          fontFamily:"IBM Plex Sans",
+          cursor: "pointer",
+        }}
+      >
+        Skip Animation
+      </button>
       <Sketch setup={setup} draw={draw} />
     </div>
   );

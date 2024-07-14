@@ -32,9 +32,9 @@ export default () => {
 
       // Utilizar el color British Green
       const britishGreen = {
-        r: 255,
-        g: 255,
-        b: 255
+        r: 0,
+        g: 150,
+        b: 94
       };
 
       p5.stroke(britishGreen.r, britishGreen.g, britishGreen.b);

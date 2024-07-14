@@ -1,22 +1,19 @@
-import React from 'react';
-import './Navbar.css';
+import React from "react";
 import { Link } from "react-router-dom";
-import Link1 from "../../assets/Link5.png";
-import Link2 from "../../assets/Link6.png";
+import logo from "../../assets/logo6.png";
+import "./Logo.css";
 
 const Navbar = () => {
   return (
-    <div className="navbar">
-      <div className="navbar-links">
-        <Link to="/work" className="navbar-link">
-          work
-        </Link>
-        <Link to="/contact" className="navbar-link">
-          contact
-        </Link>
-      </div>
+    <div className="nav">
+      <Link className="link-rrd" to="/work">
+        <p className="nav-link">Work</p>
+      </Link>
+      <Link to="/contact" className="link-rrd">
+        <p className="nav-link"> About & Contact</p>
+      </Link>
     </div>
   );
-}
+};
 
 export default Navbar;

@@ -4,7 +4,8 @@
     align-items: center;
     text-align: center;
     flex-direction: column;
-    font-family: 'Helvetica Neue', sans-serif;                                           
+    color: #00965e;
+    font-family: IBM-Plex-Sans_Regular, sans-serif;                                    
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -15,7 +16,7 @@
 }
 
 .contact-link {
-    color: black;
+    color: #00965e;
     margin-top: 2em;
     font-size: 0.9em;
 }
@@ -26,13 +27,13 @@
 
 .contact-name {
     text-decoration: underline;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: IBM-Plex-Sans_Regular, sans-serif;     
     font-size: 1.1em;
     margin-bottom: 2em;
 }
 
 .contact-info {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: IBM-Plex-Sans_Regular, sans-serif;     
     font-size: 0.9em;
     margin: 1px;
 }

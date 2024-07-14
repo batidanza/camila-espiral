@@ -17,24 +17,24 @@ import CreateCollection from "./components/management/Collection/CreateCollectio
 import ArchiveForms from "./components/management/Archive/ArchiveForms.jsx";
 import Login, { AuthProvider } from "./components/management/user/Login.jsx";
 import Management from "./components/management/Management.jsx";
+import Navbar from "./components/layout/Navbar.jsx";
 
 function App() {
   return (
     <div className="App">
       <AuthProvider>
-        <Logo />
-
+        <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/work" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/work" element={<Work />} />
+          <Route path="/animated-collection" element={<Work />} />
           <Route path="/experimentation" element={<WorkSketchPixel />} />
-          <Route path="/experimentation-2" element={<WorkSketchPixel2 />} />
+          <Route path="/" element={<WorkSketchPixel2 />} />
           <Route path="/collection/:id" element={<Collection />} />
           <Route path="/collection-create" element={<CreateCollection />} />
           <Route path="/collection-archive-create" element={<ArchiveForms />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/management" element={<Management/>} />
+          <Route path="/management" element={<Management />} />
         </Routes>
       </AuthProvider>
     </div>

@@ -11,6 +11,24 @@
   position: absolute;
 }
 
+.image-container{
+  width:37%;
+  height: auto;
+}
+
+.w-c-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 50px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.image {
+  width: 100%;
+}
+
 .elementLink {
   width: 7vw;
   height: auto;

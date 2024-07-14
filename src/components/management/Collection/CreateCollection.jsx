@@ -7,7 +7,6 @@ import {
 import "../FormStyles.css";
 
 const CreateCollection = () => {
-  // State para el formulario de colección
   const [collectionFormData, setCollectionFormData] = useState({
     Name: "",
     Image: "",
@@ -15,7 +14,6 @@ const CreateCollection = () => {
     Date: "",
   });
 
-  // State para el formulario de foto
   const [photoFormData, setPhotoFormData] = useState({
     selectedFile: null,
     collections: [],
@@ -23,7 +21,6 @@ const CreateCollection = () => {
     photoName: "",
   });
 
-  // useEffect para cargar las colecciones disponibles al inicio y después de crear una nueva colección
   useEffect(() => {
     const fetchCollections = async () => {
       try {
@@ -39,9 +36,8 @@ const CreateCollection = () => {
     };
 
     fetchCollections();
-  }, []); // Solo se ejecuta al inicio
+  }, []);
 
-  // Handlers para el formulario de colección
   const handleCollectionChange = (e) => {
     setPhotoFormData({ ...photoFormData, selectedCollection: e.target.value });
   };
@@ -56,8 +52,8 @@ const CreateCollection = () => {
 
   const handlePhotoUpload = async () => {
     try {
-      if (!photoFormData.selectedFile) {
-        console.error("No file selected");
+      if (!photoFormData.selectedFile || !photoFormData.selectedCollection) {
+        console.error("Missing file or collection selection");
         return;
       }
 
@@ -71,7 +67,6 @@ const CreateCollection = () => {
         console.log("Media uploaded successfully:", response.data);
         alert("Media uploaded successfully");
 
-        // Después de cargar exitosamente la foto, actualizar las colecciones
         const updatedCollections = await fetchCollection();
         if (updatedCollections) {
           setPhotoFormData({
@@ -91,7 +86,6 @@ const CreateCollection = () => {
     }
   };
 
-  // Handlers para el formulario de colección
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (files) {
@@ -116,7 +110,6 @@ const CreateCollection = () => {
       console.log(apiResponse.data);
       alert("Collection created");
 
-      // Después de crear exitosamente la colección, actualizar las colecciones
       const updatedCollections = await fetchCollection();
       if (updatedCollections) {
         setPhotoFormData({
@@ -133,7 +126,6 @@ const CreateCollection = () => {
 
   return (
     <div className="form-containers">
-      {/* Formulario de colección */}
       <div className="my-container-form">
         <h3 className="form-title">CREATE COLLECTION</h3>
         <form
@@ -199,13 +191,8 @@ const CreateCollection = () => {
         </form>
       </div>
 
-      {/* Formulario de foto */}
       <div className="my-container-form">
-        <form
-          onSubmit={handleSubmit}
-          encType="multipart/form-data"
-          className="my-form-form"
-        >
+        <form className="my-form-form">
           <h3 className="form-title">UPLOAD COLLECTION PHOTOS</h3>
           <div className="my-form-group-form">
             <label className="my-label-form" htmlFor="Image">
@@ -247,7 +234,11 @@ const CreateCollection = () => {
               onChange={handlePhotoFileChange}
             />
           </div>
-          <button className="my-button-form" onClick={handlePhotoUpload}>
+          <button
+            type="button" // Usamos type="button" para evitar enviar el formulario aquí
+            className="my-button-form"
+            onClick={handlePhotoUpload}
+          >
             Upload images for collection
           </button>
         </form>

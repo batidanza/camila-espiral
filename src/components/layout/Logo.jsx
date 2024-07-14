@@ -1,15 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../../assets/logo6.png'; // Importar la imagen del logo
+import './Navbar.css';
+import { Link } from "react-router-dom";
+import Link1 from "../../assets/Link5.png";
+import Link2 from "../../assets/Link6.png";
 
 const Logo = () => {
-    return (
-        <div className='logo'>
-            <Link className='link-rrd' to="/">
-                <img src={logo} alt="Camila Espiral" className='logo-image' />
-            </Link>
-        </div>
-    );
-};
+  return (
+    <div className="logo">
+      <div className="logo-links">
+        <Link to="/home" className="logo-link">
+          CAMILA-ESPIRAL
+        </Link>
+      </div>
+    </div>
+  );
+}
 
 export default Logo;
