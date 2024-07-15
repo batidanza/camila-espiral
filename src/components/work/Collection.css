@@ -18,6 +18,10 @@
   flex-direction: row;
 }
 
+._3BNPD{
+  background-color: whitesmoke;
+}               
+
 .column {
   margin-bottom: 20px;
   box-sizing: border-box;
@@ -49,7 +53,7 @@
 }
 
 .artwork-image {
-  width: 100%;
+  width: 80%;
   max-width: 100%;
   height: auto;
   object-fit: cover;

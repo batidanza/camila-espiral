@@ -34,7 +34,7 @@ const DraggablePhoto = ({ photo, index, movePhoto }) => {
   return (
     <div ref={(node) => ref(drop(node))} className="artwork-container">
       <div className="artwork">
-        <SlideshowLightbox>
+        <SlideshowLightbox className="custom-slideshow-lightbox">
           <img
             src={photo.Image}
             alt={`Photo ${photo.ID}`}
