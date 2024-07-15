@@ -7,16 +7,16 @@ const Navbar = () => {
   const location = useLocation();
 
   // Check if the current path is "/"
-  if (location.pathname === "/camilaespiral/") {
+  if (location.pathname === "/") {
     return null; // Return null to render nothing
   }
 
   return (
     <div className="nav">
-      <Link className="link-rrd" to="/camilaespiral/work">
+      <Link className="link-rrd" to="/work">
         <p className="nav-link">Work</p>
       </Link>
-      <Link to="/camilaespiral/contact" className="link-rrd">
+      <Link to="/contact" className="link-rrd">
         <p className="nav-link"> About & Contact</p>
       </Link>
     </div>
