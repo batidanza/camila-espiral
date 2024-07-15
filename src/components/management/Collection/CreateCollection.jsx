@@ -5,6 +5,7 @@ import {
   createCollection,
 } from "../../../services/collectionAPI";
 import "../FormStyles.css";
+import LoadingSketch from "../../layout/LoadingSketch";
 
 const CreateCollection = () => {
   const [collectionFormData, setCollectionFormData] = useState({
@@ -20,6 +21,8 @@ const CreateCollection = () => {
     selectedCollection: "",
     photoName: "",
   });
+
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchCollections = async () => {
@@ -51,6 +54,7 @@ const CreateCollection = () => {
   };
 
   const handlePhotoUpload = async () => {
+    setIsLoading(true);
     try {
       if (!photoFormData.selectedFile || !photoFormData.selectedCollection) {
         console.error("Missing file or collection selection");
@@ -83,6 +87,8 @@ const CreateCollection = () => {
     } catch (error) {
       console.error("Error uploading media:", error);
       alert("Error uploading media");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -97,35 +103,43 @@ const CreateCollection = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("collectionFormData before submission:", collectionFormData);
-    const formDataToSubmit = new FormData();
+    setIsLoading(true);
+    try {
+      console.log("collectionFormData before submission:", collectionFormData);
+      const formDataToSubmit = new FormData();
 
-    Object.entries(collectionFormData).forEach(([key, value]) => {
-      formDataToSubmit.append(key, value);
-    });
+      Object.entries(collectionFormData).forEach(([key, value]) => {
+        formDataToSubmit.append(key, value);
+      });
 
-    const apiResponse = await createCollection(formDataToSubmit);
+      const apiResponse = await createCollection(formDataToSubmit);
 
-    if (apiResponse.success) {
-      console.log(apiResponse.data);
-      alert("Collection created");
+      if (apiResponse.success) {
+        console.log(apiResponse.data);
+        alert("Collection created");
 
-      const updatedCollections = await fetchCollection();
-      if (updatedCollections) {
-        setPhotoFormData({
-          ...photoFormData,
-          collections: updatedCollections,
-        });
+        const updatedCollections = await fetchCollection();
+        if (updatedCollections) {
+          setPhotoFormData({
+            ...photoFormData,
+            collections: updatedCollections,
+          });
+        } else {
+          console.error("Error fetching updated collections");
+        }
       } else {
-        console.error("Error fetching updated collections");
+        console.error("Error creating collection:", apiResponse.error);
       }
-    } else {
-      console.error("Error creating collection:", apiResponse.error);
+    } catch (error) {
+      console.error("Error creating collection:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="form-containers">
+      {isLoading && <LoadingSketch />}
       <div className="my-container-form">
         <h3 className="form-title">CREATE COLLECTION</h3>
         <form
@@ -160,19 +174,6 @@ const CreateCollection = () => {
           </div>
 
           <div className="my-form-group-form">
-            <label htmlFor="Date" className="my-label-form">
-              DATE
-            </label>
-            <input
-              type="date"
-              className="my-input-form"
-              name="Date"
-              value={collectionFormData.Date}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="my-form-group-form">
             <label className="my-label-form" htmlFor="Image">
               IMAGE
             </label>
@@ -192,8 +193,8 @@ const CreateCollection = () => {
       </div>
 
       <div className="my-container-form">
+        <h3 className="form-title">UPLOAD COLLECTION PHOTOS</h3>
         <form className="my-form-form">
-          <h3 className="form-title">UPLOAD COLLECTION PHOTOS</h3>
           <div className="my-form-group-form">
             <label className="my-label-form" htmlFor="Image">
               COLLECTION
@@ -239,7 +240,7 @@ const CreateCollection = () => {
             className="my-button-form"
             onClick={handlePhotoUpload}
           >
-            Upload images for collection
+            POST IMAGE FOR COLLECTION
           </button>
         </form>
       </div>

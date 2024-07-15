@@ -16,8 +16,11 @@ const Navbar = () => {
       <Link className="link-rrd" to="/work">
         <p className="nav-link">Work</p>
       </Link>
+      <p className="nav-link">
+        -
+      </p>
       <Link to="/contact" className="link-rrd">
-        <p className="nav-link"> About & Contact</p>
+        <p className="nav-link">About & Contact</p>
       </Link>
     </div>
   );
