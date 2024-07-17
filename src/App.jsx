@@ -20,6 +20,7 @@ import ArchiveForms from "./components/management/Archive/ArchiveForms.jsx";
 import Login, { AuthProvider } from "./components/management/user/Login.jsx";
 import Management from "./components/management/Management.jsx";
 import Navbar from "./components/layout/Navbar.jsx";
+import WorkHome from "./components/work/WorkHome.jsx";
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
       <AuthProvider>
         <Navbar />
         <Routes>
-          <Route path="/work" element={<Home />} />
+          <Route path="/work" element={<WorkHome />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/animated-collection" element={<Work />} />
           <Route path="/experimentation" element={<WorkSketchPixel />} />

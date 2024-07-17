@@ -92,40 +92,40 @@ const Home = () => {
   }
 
   return (
-    <DndProvider backend={HTML5Backend}>
-      <div className="home-container">
-        <div className="w-c-container">
-          {collections.map((collection, index) => (
-            <DraggableCollection
-              key={collection.ID}
-              collection={collection}
-              index={index}
-              moveCollection={moveCollection}
-            />
-          ))}
+    <>
+      <DndProvider backend={HTML5Backend}>
+        <div className="home-container">
+          <div className="w-c-container">
+            {collections.map((collection, index) => (
+              <DraggableCollection
+                key={collection.ID}
+                collection={collection}
+                index={index}
+                moveCollection={moveCollection}
+              />
+            ))}
+          </div>
         </div>
-      </div>
 
-      <div className="admin-buttons">
-        {loggedIn && (
-          <>
-            <Link to="/management">
-              <button className="management-button">Management</button>
-            </Link>
-            <button onClick={logout} className="management-button">
-              Logout
-            </button>
-          </>
-        )}
-      </div>
-    </DndProvider>
+        <div className="admin-buttons">
+          {loggedIn && (
+            <>
+              <Link to="/management">
+                <button className="management-button">Management</button>
+              </Link>
+              <button onClick={logout} className="management-button">
+                Logout
+              </button>
+            </>
+          )}
+        </div>
+      </DndProvider>
+
+    </>
   );
 };
 
 export default Home;
-
-
-
 
 {
   /* 

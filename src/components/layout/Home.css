@@ -2,6 +2,7 @@
   z-index: -1;
 }
 
+
 .elements-container {
   display: flex;
   flex-direction: column;
@@ -26,7 +27,11 @@
 }
 
 .image {
-  width: 100%;
+  width: 90%;
+}
+
+.image:hover {
+  border: solid 1px  #00965e;
 }
 
 .elementLink {

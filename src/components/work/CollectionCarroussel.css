@@ -1,0 +1,53 @@
+.carrousel {
+    position: relative;
+    width: 100%;
+    height: 80vh; /* Altura del carrusel */
+    overflow: hidden; /* Oculta cualquier contenido que desborde del carrusel */
+  }
+  
+  .carrousel-inner {
+    display: flex; /* Contenedor interno de las imágenes */
+    transition: transform 0.5s ease; /* Animación suave al cambiar imágenes */
+  }
+  
+  .carrousel-item {
+    height: 100%; /* Ajusta la altura del .carrousel-item al 100% del carrusel */
+    padding: 35px; /* Espacio entre las imágenes */
+    box-sizing: border-box; /* Incluye el padding en el ancho total */
+    display: flex; /* Permite centrar la imagen verticalmente */
+    justify-content: center; /* Centra la imagen horizontalmente */
+    align-items: center; /* Centra la imagen verticalmente */
+    position: relative; /* Asegura que los botones de navegación estén correctamente posicionados */
+  }
+  
+  .carroussel-img {
+    height: 80vh; /* Altura máxima de la imagen */
+    width: auto; /* Ajusta el ancho automáticamente para mantener la proporción */
+    display: block; /* Elimina espacios adicionales alrededor de la imagen */
+  }
+
+  .carroussel-img:hover{
+    border: solid 1px #00965e;
+  }
+  
+  .prev,
+  .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color:transparent;
+    color: #00965e; /* Color del borde del texto */ ;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1; /* Asegura que los botones estén sobre las imágenes */
+  }
+  
+  .prev {
+    left: 0;
+  }
+  
+  .next {
+    right: 0;
+  }
+  
