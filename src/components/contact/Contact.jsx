@@ -25,7 +25,6 @@ const Contact = () => {
           {email}
         </Link>
       </div>
-      <CollectionCarroussel />
     </>
   );
 };

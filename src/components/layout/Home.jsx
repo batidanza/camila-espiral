@@ -41,7 +41,7 @@ const DraggableCollection = ({ collection, index, moveCollection }) => {
 };
 
 const Home = () => {
-  const { loggedIn, logout } = useAuth();
+  const { loggedIn } = useAuth(); // Get loggedIn state
   const [collections, setCollections] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state
 
@@ -64,11 +64,12 @@ const Home = () => {
     setCollections(updatedCollections);
 
     try {
-      console.log("Enviando datos al servidor:", {
+      console.log("Sending data to the server:", {
         firstPhotoId: updatedCollections[fromIndex].ID,
         secondPhotoId: updatedCollections[toIndex].ID,
       });
 
+      // Assuming swapCollectionIds function works as expected
       const response = await swapCollectionIds(
         updatedCollections[fromIndex].ID,
         updatedCollections[toIndex].ID
@@ -86,6 +87,10 @@ const Home = () => {
       setCollections(revertedCollections);
     }
   };
+
+  if (!loggedIn) {
+    return null; // Render nothing if not logged in
+  }
 
   if (loading) {
     return <LoadingSketch />;
@@ -106,21 +111,7 @@ const Home = () => {
             ))}
           </div>
         </div>
-
-        <div className="admin-buttons">
-          {loggedIn && (
-            <>
-              <Link to="/management">
-                <button className="management-button">Management</button>
-              </Link>
-              <button onClick={logout} className="management-button">
-                Logout
-              </button>
-            </>
-          )}
-        </div>
       </DndProvider>
-
     </>
   );
 };

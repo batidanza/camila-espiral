@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: whitesmoke;
 }
 
 .App {
@@ -12,6 +13,7 @@ body {
   text-decoration: none;
   color: rgb(255, 255, 255);
 }
+
 
 .loading {
   position: fixed; /* Se asegura de que el loading se mantenga fijo en la pantalla */

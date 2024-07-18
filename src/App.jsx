@@ -29,6 +29,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/work" element={<WorkHome />} />
+          <Route path="/admin-home" element={<Home/>} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/animated-collection" element={<Work />} />
           <Route path="/experimentation" element={<WorkSketchPixel />} />

@@ -9,7 +9,14 @@
   align-items: center;
 }
 
-
+.nav-logout {
+  background-color: transparent;
+  border: none;
+  color: #00965e;
+  font-family: IBM-Plex-Sans_Regular, sans-serif;
+  font-size: 16px;
+  
+}
 
 .nav-link {
   text-align: center;

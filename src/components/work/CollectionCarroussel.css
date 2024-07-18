@@ -9,21 +9,44 @@
     display: flex; /* Contenedor interno de las imágenes */
     transition: transform 0.5s ease; /* Animación suave al cambiar imágenes */
   }
+
+  .separator-cursor {
+
+  }
   
+
+  .separator {
+    width: 98%;
+    margin-top: 50px;
+    height: 20px;
+    padding: 8px;
+    font-family: IBM-Plex-Sans_Regular, sans-serif;
+    color: #00965e;
+  }
+
+  .separator-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
   .carrousel-item {
     height: 100%; /* Ajusta la altura del .carrousel-item al 100% del carrusel */
-    padding: 35px; /* Espacio entre las imágenes */
+    padding: 5px; /* Espacio entre las imágenes */
     box-sizing: border-box; /* Incluye el padding en el ancho total */
     display: flex; /* Permite centrar la imagen verticalmente */
     justify-content: center; /* Centra la imagen horizontalmente */
     align-items: center; /* Centra la imagen verticalmente */
     position: relative; /* Asegura que los botones de navegación estén correctamente posicionados */
+    margin-top: 30px;
   }
   
   .carroussel-img {
-    height: 80vh; /* Altura máxima de la imagen */
+    height: 83.5vh; /* Altura máxima de la imagen */
     width: auto; /* Ajusta el ancho automáticamente para mantener la proporción */
     display: block; /* Elimina espacios adicionales alrededor de la imagen */
+    cursor: url(../../assets/pop-1.png), auto;
   }
 
   .carroussel-img:hover{
@@ -38,9 +61,11 @@
     background-color:transparent;
     color: #00965e; /* Color del borde del texto */ ;
     border: none;
-    padding: 10px;
+    padding: 20px;
     cursor: pointer;
     z-index: 1; /* Asegura que los botones estén sobre las imágenes */
+    font-size: 2rem; 
+    font-weight: 100;
   }
   
   .prev {
@@ -50,4 +75,28 @@
   .next {
     right: 0;
   }
+
+  @media (max-width: 768px) {
+
+    .carrousel-item {
+      flex: 0 0 100%;
+    }
+
+    .carroussel-img {
+      height: auto ; /* Altura máxima de la imagen */
+      width: 100%; 
+      display: block; /* Elimina espacios adicionales alrededor de la imagen */
+    }
+    .carrousel-item {
+      height: 100%; /* Ajusta la altura del .carrousel-item al 100% del carrusel */
+      padding: 30px; /* Espacio entre las imágenes */
+      display: flex; /* Permite centrar la imagen verticalmente */
+      justify-content: center; /* Centra la imagen horizontalmente */
+      align-items: center; /* Centra la imagen verticalmente */
+      
+    }
+  
+    
+  }
+
   
