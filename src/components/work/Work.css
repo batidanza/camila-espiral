@@ -20,6 +20,7 @@
     height: 100vh;
     background-color: whitesmoke;
   }
+
   .collection-container h2 {
     margin: 10px 0;
     text-align: center;
@@ -46,5 +47,33 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+  }
+  
+  .exp-links {
+    display: flex;
+    justify-content: space-around; /* Centers items horizontally */
+    align-items: center;
+  }
+  
+  .exp-link-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .fold-image {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Responsive Design for Mobile Devices */
+  @media (max-width: 768px) {
+    .exp-links {
+      flex-direction: column; /* Stacks items vertically on smaller screens */
+    }
+  
+    .exp-link-container {
+      margin-bottom: 10px; /* Adds space between stacked items */
+    }
   }
   

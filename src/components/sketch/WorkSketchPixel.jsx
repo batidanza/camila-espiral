@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Sketch from "react-p5";
-import { fetchMl } from "../../services/collectionAPI";
+import { getPhotoByArchive } from "../../services/ArchiveAPI";
 import backgroundImage from "../../assets/pop-1.png";
 import backgroundAudio from "../../assets/background-audio.wav";
 
 class MovableImage {
-  constructor(img, p5, x, y) {
+  constructor(img, originalImg, p5, x, y) {
     this.img = img;
+    this.originalImg = originalImg;
     this.p5 = p5;
     this.x = x;
     this.y = y;
@@ -20,25 +21,23 @@ class MovableImage {
     this.clicked = false;
     this.size = 1;
     this.zooming = false;
-    this.zoomSpeed = 0.05;
+    this.zoomSpeed = 0.010;
   }
 
   display() {
-    const { p5, img, x, y, angle, size } = this;
+    const { p5, img, originalImg, x, y, angle, size, clicked } = this;
     p5.push();
-    if (!this.clicked) {
+    if (!clicked) {
       p5.translate(x + img.width * size / 2, y + img.height * size / 2);
       p5.rotate(angle);
       p5.translate(-img.width * size / 2, -img.height * size / 2);
+      p5.image(img, 0, 0, img.width * size, img.height * size);
     } else {
-      p5.translate(x, y); // Posicionar en (x, y) cuando se hace clic
+      p5.translate(x, y);
+      p5.image(originalImg, 0, 0, originalImg.width * size, originalImg.height * size);
     }
-    p5.image(img, 0, 0, img.width * size, img.height * size);
     p5.pop();
   }
-  
-
-
 
   isMouseOver() {
     const { p5, x, y, img, size } = this;
@@ -65,7 +64,6 @@ class MovableImage {
     }
   }
 
-
   handleClick() {
     if (this.isMouseOver()) {
       this.zooming = true;
@@ -73,18 +71,22 @@ class MovableImage {
     }
   }
 
+  resetZoom() {
+    this.size = 1;
+    this.zooming = false;
+    this.clicked = false;
+    this.x = this.originalX;
+    this.y = this.originalY;
+  }
+
   update(p5) {
     if (this.zooming) {
       this.size += this.zoomSpeed;
-      this.x = p5.width / 2 - (this.img.width * this.size) / 2;
-      this.y = p5.height / 2 - (this.img.height * this.size) / 2;
+      this.x = p5.width / 2 - (this.originalImg.width * this.size) / 2;
+      this.y = p5.height / 2 - (this.originalImg.height * this.size) / 2;
 
-      if (this.size > 20) { // Ajusta este valor según el nivel de zoom deseado
-        this.size = 1;
-        this.zooming = false;
-        this.clicked = false;
-        this.x = this.originalX;
-        this.y = this.originalY;
+      if (this.size > 20) {
+        this.resetZoom();
         return true;
       }
     }
@@ -122,12 +124,14 @@ const MovableImageCanvas = () => {
     });
 
     try {
-      const collection = await fetchMl();
+      const collection = await getPhotoByArchive("Analogicas");
       const images = await loadImages(collection, p5);
 
-      const movableImages = images.map((img, index) => {
+      const movableImages = images.map((imgs, index) => {
+        const [img, originalImg] = imgs;
         return new MovableImage(
           img,
+          originalImg,
           p5,
           p5.random(p5.width - img.width),
           p5.random(p5.height - img.height)
@@ -150,9 +154,12 @@ const MovableImageCanvas = () => {
       imageUrls.map(
         (imageUrl) =>
           new Promise((resolve) => {
-            p5.loadImage(imageUrl, (img) => {
+            p5.loadImage(imageUrl, (originalImg) => {
+              const img = originalImg.get();
               img.resize(imgWidth, 0);
-              resolve(img);
+              const originalWidth = originalImg.width * 0.4;
+              originalImg.resize(originalWidth, 0);
+              resolve([img, originalImg]);
             });
           })
       )
@@ -163,7 +170,7 @@ const MovableImageCanvas = () => {
 
   const draw = (p5) => {
     p5.clear();
-    p5.background(255); // Fondo negro para un efecto más dramático
+    p5.background(245, 245, 245);
     if (zoomedImageIndex !== null) {
       const zoomedImage = movableImages[zoomedImageIndex];
       if (zoomedImage.update(p5)) {
@@ -180,12 +187,18 @@ const MovableImageCanvas = () => {
   };
 
   const mousePressed = (p5) => {
-    movableImages.forEach((movableImage, index) => {
-      movableImage.handleClick();
-      if (movableImage.clicked) {
-        setZoomedImageIndex(index);
-      }
-    });
+    if (zoomedImageIndex !== null) {
+      const zoomedImage = movableImages[zoomedImageIndex];
+      zoomedImage.resetZoom();
+      setZoomedImageIndex(null);
+    } else {
+      movableImages.forEach((movableImage, index) => {
+        movableImage.handleClick();
+        if (movableImage.clicked) {
+          setZoomedImageIndex(index);
+        }
+      });
+    }
   };
 
   return (

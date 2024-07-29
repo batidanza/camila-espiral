@@ -10,10 +10,7 @@
     transition: transform 0.5s ease; /* Animación suave al cambiar imágenes */
   }
 
-  .separator-cursor {
 
-  }
-  
 
   .separator {
     width: 98%;
@@ -61,7 +58,7 @@
     background-color:transparent;
     color: #00965e; /* Color del borde del texto */ ;
     border: none;
-    padding: 20px;
+    padding: 5px;
     cursor: pointer;
     z-index: 1; /* Asegura que los botones estén sobre las imágenes */
     font-size: 2rem; 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { loginUser } from '../../../services/fetchUsers';
 import { Navigate } from 'react-router-dom';
+import CustomTextInput from '../FormComponents/CustomTextInput';
 
 const AuthContext = createContext();
 
@@ -57,28 +58,25 @@ const Login = () => {
   };
 
   if (loggedIn) {
-    return <Navigate to="/admin-home" />;
+    return <Navigate to="/management" />;
   }
 
   return (
     <div className='my-container-form'>
       <h2 className="my-label-form">Login</h2>
       {error && <p>{error}</p>}
-      <input
+      <CustomTextInput
         className='my-input-form'
-        type="text"
         placeholder="Username"
-        name='Username'
         value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        onChange={setUsername}
       />
-      <input
+      <CustomTextInput
         className='my-input-form'
         type="password"
         placeholder="Password"
-        name='Password'
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={setPassword}
       />
       <button className='my-button-form' onClick={handleLogin}>Login</button>
     </div>

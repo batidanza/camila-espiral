@@ -75,7 +75,7 @@ export const fetchArchivePhoto = async () => {
 export const uploadArchivePhoto = async (formDataWithFile) => {
   try {
     const response = await fetch(
-      `${import.meta.env.VITE_REACT_APP_API_ENDPOINT}/archive-photos/create-archive-photo`,
+      `${import.meta.env.VITE_REACT_APP_API_ENDPOINT}/archive-photo/create-archive-photo`,
       {
         method: "POST",
         body: formDataWithFile,
@@ -95,19 +95,17 @@ export const uploadArchivePhoto = async (formDataWithFile) => {
     return { success: false, error: "Error uploading photo" };
   }
 };
-
-export const getPhotoByArchive = async (ArchiveName) => {
+ 
+export const getPhotoByArchive = async (archiveName) => {
   try {
     const response = await fetch(
-      `${
-        import.meta.env.VITE_REACT_APP_API_ENDPOINT
-      }/archive-photo/byArchive/${ArchiveName}`
+      `${import.meta.env.VITE_REACT_APP_API_ENDPOINT}/archive-photo/byArchive/${archiveName}`
     );
     const data = await response.json();
     return data;
   } catch (error) {
     console.error(
-      `Error fetching photo for collection with ID ${archiveId}:`,
+      `Error fetching photo for archive with name ${archiveName}:`,
       error
     );
     return [];

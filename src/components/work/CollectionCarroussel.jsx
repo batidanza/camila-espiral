@@ -22,6 +22,7 @@ const CollectionCarroussel = () => {
 
   useEffect(() => {
     const fetchPhotos = async () => {
+      setIsLoading(true);
       try {
         const data = await fetchCollection();
         const sortedPhotos = data.sort((a, b) => a.Position - b.Position);
@@ -48,26 +49,30 @@ const CollectionCarroussel = () => {
     setCurrentIndex(index);
   };
 
-  if (isLoading) return <LoadingSketch />;
-
   return (
-    <div className="carrousel">
-      <button className="prev" onClick={prevSlide}>&#10094;</button>
-      <div className="carrousel-inner" style={{ transform: `translateX(-${currentIndex * (isMobile ? 100 : 40)}%)` }}>
-
-        {photos.map((photo, index) => (
-          <Link to={`/collection/${photo.ID}`} key={photo.ID} className={`carrousel-item ${index === currentIndex ? 'active' : ''}`}>
-            <img
-              className={`carroussel-img ${hovered ? 'separator-cursor' : ''}`}
-              src={photo.Image}
-              alt={photo.alt}
-              onMouseEnter={() => setHovered(true)}
-              onMouseLeave={() => setHovered(false)}
-            />
-          </Link>
-        ))}
+    <div className="carrousel-container">
+      {isLoading && (
+        <div className="loading">
+          <LoadingSketch />
+        </div>
+      )}
+      <div className="carrousel">
+        <button className="prev" onClick={prevSlide}>&#10094;</button>
+        <div className="carrousel-inner" style={{ transform: `translateX(-${currentIndex * (isMobile ? 100 : 40)}%)` }}>
+          {photos.map((photo, index) => (
+            <Link to={`/collection/${photo.ID}`} key={photo.ID} className={`carrousel-item ${index === currentIndex ? 'active' : ''}`}>
+              <img
+                className={`carroussel-img ${hovered ? 'separator-cursor' : ''}`}
+                src={photo.Image}
+                alt={photo.alt}
+                onMouseEnter={() => setHovered(true)}
+                onMouseLeave={() => setHovered(false)}
+              />
+            </Link>
+          ))}
+        </div>
+        <button className="next" onClick={nextSlide}>&#10095;</button>
       </div>
-      <button className="next" onClick={nextSlide}>&#10095;</button>
     </div>
   );
 };

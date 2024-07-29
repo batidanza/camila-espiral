@@ -36,3 +36,17 @@
 .logo-link:hover {
   cursor: url(../../assets/cursor2.png), auto;
 }
+
+/* Styles for screens smaller than 600px */
+@media (max-width: 599px) {
+  .logo-link {
+    font-size: 30px;
+  }
+}
+
+/* Styles for screens larger than 600px */
+@media (min-width: 600px) {
+  .logo-link {
+    font-size: 70px;
+  }
+}

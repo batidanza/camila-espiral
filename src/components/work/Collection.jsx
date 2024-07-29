@@ -12,19 +12,21 @@ import LoadingSketch from "../layout/LoadingSketch";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { swapPhotoIds } from "../../services/photoAPI";
+import { useAuth } from "../management/user/Login"
 
 const ItemType = "PHOTO";
 
-const DraggablePhoto = ({ photo, index, movePhoto }) => {
+const DraggablePhoto = ({ photo, index, movePhoto, canDrag }) => {
   const [, ref] = useDrag({
     type: ItemType,
     item: { index },
+    canDrag: () => canDrag,
   });
 
   const [, drop] = useDrop({
     accept: ItemType,
     hover: (draggedItem) => {
-      if (draggedItem.index !== index) {
+      if (canDrag && draggedItem.index !== index) {
         movePhoto(draggedItem.index, index);
         draggedItem.index = index;
       }
@@ -51,6 +53,7 @@ const Collection = () => {
   const [photos, setPhotos] = useState([]);
   const [collection, setCollection] = useState(null);
   const [error, setError] = useState(null);
+  const { loggedIn } = useAuth(); // Access authentication state
 
   useEffect(() => {
     initLightboxJS("Insert your License Key here", "Insert plan type here");
@@ -64,7 +67,6 @@ const Collection = () => {
           fetchCollectionById(id),
         ]);
         
-        // Ordena las fotos por 'Position'
         const sortedPhotos = photoData.sort((a, b) => a.Position - b.Position);
         setPhotos(sortedPhotos);
         setCollection(collectionData);
@@ -81,7 +83,6 @@ const Collection = () => {
     const [movedPhoto] = updatedPhotos.splice(fromIndex, 1);
     updatedPhotos.splice(toIndex, 0, movedPhoto);
 
-    // Actualiza las posiciones en el estado local
     updatedPhotos.forEach((photo, index) => {
       photo.Position = index;
     });
@@ -89,11 +90,6 @@ const Collection = () => {
     setPhotos(updatedPhotos);
 
     try {
-      console.log("Enviando datos al servidor:", {
-        firstPhotoId: updatedPhotos[fromIndex].ID,
-        secondPhotoId: updatedPhotos[toIndex].ID,
-      });
-
       const response = await swapPhotoIds(
         updatedPhotos[fromIndex].ID,
         updatedPhotos[toIndex].ID
@@ -104,7 +100,6 @@ const Collection = () => {
       }
     } catch (error) {
       setError("Error swapping photo IDs");
-      // Revertir los cambios en caso de error
       const revertedPhotos = [...updatedPhotos];
       const [revertedPhoto] = revertedPhotos.splice(toIndex, 1);
       revertedPhotos.splice(fromIndex, 0, revertedPhoto);
@@ -132,6 +127,7 @@ const Collection = () => {
                     photo={photo}
                     index={photos.indexOf(photo)}
                     movePhoto={movePhoto}
+                    canDrag={loggedIn} // Pass down the logged-in status
                   />
                 ))}
             </div>
