@@ -8,8 +8,7 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "start": "serve dist -s -n -L $PORT"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -23,6 +22,7 @@
     "react-router-dom": "^6.23.0",
     "react-slick": "^0.30.2",
     "react-slideshow-image": "^4.3.1",
+    "serve": "^14.2.3",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
